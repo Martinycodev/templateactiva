@@ -1,0 +1,41 @@
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:activarjonilla.com
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} (www\.)?activarjonilla.com
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:activarjonilla.com
+
+
+<IfModule mod_rewrite.c>
+#Activar rewrite
+RewriteEngine on
+ErrorDocument 404 http://localhost/activarjonilla/error/ 
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+
+
+#RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+
+RewriteRule ^home/(.*)$ index.php?controller=home&action=$1
+RewriteRule ^categoria/(.*)$ index.php?controller=categoria&action=$1
+
+
+
+RewriteRule ^negocio/(.*)$ index.php?controller=negocio&action=$1 [L]
+
+
+
+RewriteRule ^noticia/(.*)$ index.php?controller=noticia&action=$1
+RewriteRule ^servicio/(.*)$ index.php?controller=servicio&action=$1
+RewriteRule ^usuario/(.*)$ index.php?controller=usuario&action=$1
+RewriteRule ^error/(.*)$ index.php?controller=error&action=$1
+
+
+#RewriteEngine On
+#RewriteCond %{SERVER_PORT} 80
+#RewriteRule ^(.*)$ https://www.activarjonilla.com/$1 [R,L]
+
+</IfModule>
